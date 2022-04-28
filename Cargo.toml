@@ -1,8 +1,8 @@
 [package]
-name = "rust-template"
+name = "choice"
 version = "0.1.0"
-authors = ["Near Inc <hello@near.org>"]
-edition = "2018"
+authors = ["Guacharo <https://github.com/YellingOilbird.com>"]
+edition = "2022"
 
 [lib]
 crate-type = ["cdylib"]
