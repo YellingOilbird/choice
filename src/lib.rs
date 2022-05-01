@@ -171,13 +171,14 @@ impl Contract {
         env::log_str(&(format!("Wow! Created a new Proposal: id {} proposal {:#?}", &proposal_id, &proposal).to_string()));
 		
         let mut choicer = self.choicers
-		        .get(&predecessor)
-		        .expect(&(format!("No choicer with id @{}",predecessor)));
+                .get(&predecessor)
+                .expect(&(format!("No choicer with id @{}",predecessor)));
 
-		    choicer.current_choices += 1;
-		    choicer.proposals_created += 1;
-		    self.choicers.insert(&predecessor,&choicer);
-	    self.proposals.insert(&proposal_id, &proposal);
+        choicer.current_choices += 1;
+        choicer.proposals_created += 1;
+        self.choicers.insert(&predecessor,&choicer);
+		
+        self.proposals.insert(&proposal_id, &proposal);
     }
 
     pub fn view_decisions(
