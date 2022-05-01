@@ -379,10 +379,10 @@ impl Contract {
         //set weights for calculate
         self.vote_engine.weights = self.set_weights(p, converted_funds);
         
-		//Get vote results from contract
+        //Get vote results from contract
         let votes = proposal.vote_results;
         let mut results:Vec<HashMap<String, f64>> = Vec::new();
-		for i in votes.into_iter() {
+        for i in votes.into_iter() {
             results.push(i.vote)
         }
         //Convert every vote from vote results
