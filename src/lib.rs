@@ -688,70 +688,71 @@ mod tests {
                 ("participant_3.near".to_string(), 4.0),
                 ("participant_6.near".to_string(), 5.0),
                 ("participant_5.near".to_string(), 6.0),
-			]) 
-		);
-		//PARTICIPANT_5 CONTEXT. VOTE
-		testing_env!(
-			get_context(participant_5())
-		);
-		contract.vote(
-			"creator.near001".to_string(),
-		    HashMap::from([
-				("participant_1.near".to_string(), 1.0),
-				("participant_6.near".to_string(), 2.0),
-				("participant_7.near".to_string(), 3.0),
-				("participant_3.near".to_string(), 4.0),
-				("participant_4.near".to_string(), 5.0),
-				("participant_2.near".to_string(), 6.0),
-				])
-			);
-		//PARTICIPANT_6 CONTEXT. VOTE
-		testing_env!(
-			get_context(participant_6())
-		);
-		contract.vote(
-			"creator.near001".to_string(),
-		    HashMap::from([
-				("participant_1.near".to_string(), 1.0),
-				("participant_5.near".to_string(), 2.0),
-				("participant_7.near".to_string(), 3.0),
-				("participant_3.near".to_string(), 4.0),
-				("participant_4.near".to_string(), 5.0),
-				("participant_2.near".to_string(), 6.0),
-				])
-			);
-		//PARTICIPANT_7 CONTEXT. VOTE
-		testing_env!(
-			get_context(participant_7())
-		);
-		contract.vote(
-			"creator.near001".to_string(),
-		    HashMap::from([
-				("participant_1.near".to_string(), 1.0),
-				("participant_6.near".to_string(), 2.0),
-				("participant_5.near".to_string(), 3.0),
-				("participant_3.near".to_string(), 4.0),
-				("participant_4.near".to_string(), 5.0),
-				("participant_2.near".to_string(), 6.0),
-				])
-			);
+            ]) 
+        );
+        //PARTICIPANT_5 CONTEXT. VOTE
+        testing_env!(
+            get_context(participant_5())
+        );
+        contract.vote(
+            "creator.near001".to_string(),
+            HashMap::from([
+                ("participant_1.near".to_string(), 1.0),
+                ("participant_6.near".to_string(), 2.0),
+                ("participant_7.near".to_string(), 3.0),
+                ("participant_3.near".to_string(), 4.0),
+                ("participant_4.near".to_string(), 5.0),
+                ("participant_2.near".to_string(), 6.0),
+            ])
+        );
+        //PARTICIPANT_6 CONTEXT. VOTE
+        testing_env!(
+            get_context(participant_6())
+        );
+        contract.vote(
+            "creator.near001".to_string(),
+            HashMap::from([
+                ("participant_1.near".to_string(), 1.0),
+                ("participant_5.near".to_string(), 2.0),
+                ("participant_7.near".to_string(), 3.0),
+                ("participant_3.near".to_string(), 4.0),
+                ("participant_4.near".to_string(), 5.0),
+                ("participant_2.near".to_string(), 6.0),
+            ])
+	    ); 
+	    //PARTICIPANT_6 CONTEXT. VOTE
+	    testing_env!(
+		    get_context(participant_6())
+	    );
+	    contract.vote(
+		    "creator.near001".to_string(),
+	    	HashMap::from([
+                ("participant_1.near".to_string(), 1.0),
+                ("participant_6.near".to_string(), 2.0),
+                ("participant_5.near".to_string(), 3.0),
+                ("participant_3.near".to_string(), 4.0),
+                ("participant_4.near".to_string(), 5.0),
+                ("participant_2.near".to_string(), 6.0),
+            ])
+        );
         //CREATOR CONTEXT. START PAYOUT
-		testing_env!(
-			get_context(creator())
-		);
-		println!("{:?}", contract.view_decisions("creator.near001".to_string()));
-		println!("{:?}", contract.view_vote_board("creator.near001".to_string()));
+        testing_env!(
+            get_context(creator())
+        );
+        println!("{:?}", contract.view_decisions("creator.near001".to_string()));
+        println!("{:?}", contract.view_vote_board("creator.near001".to_string()));
 
-		contract.finish_election("creator.near001".to_string());
-		contract.payout("creator.near001".to_string());
+        contract.finish_election("creator.near001".to_string());
+        contract.payout("creator.near001".to_string());
+        
         println!("{:?}", contract.choicers.get(&"participant_1.near".parse().unwrap()));
-		println!("{:?}", contract.choicers.get(&"participant_2.near".parse().unwrap()));
-		println!("{:?}", contract.choicers.get(&"participant_3.near".parse().unwrap()));
-		println!("{:?}", contract.choicers.get(&"participant_4.near".parse().unwrap()));
-		println!("{:?}", contract.choicers.get(&"participant_5.near".parse().unwrap()));
-		println!("{:?}", contract.choicers.get(&"participant_6.near".parse().unwrap()));
-		println!("{:?}", contract.choicers.get(&"participant_7.near".parse().unwrap()));
-		println!("{:?}", contract.choicers.get(&"creator.near".parse().unwrap()));
+        println!("{:?}", contract.choicers.get(&"participant_2.near".parse().unwrap()));
+        println!("{:?}", contract.choicers.get(&"participant_3.near".parse().unwrap()));
+        println!("{:?}", contract.choicers.get(&"participant_4.near".parse().unwrap()));
+        println!("{:?}", contract.choicers.get(&"participant_5.near".parse().unwrap()));
+        println!("{:?}", contract.choicers.get(&"participant_6.near".parse().unwrap()));
+        println!("{:?}", contract.choicers.get(&"participant_7.near".parse().unwrap()));
+        println!("{:?}", contract.choicers.get(&"creator.near".parse().unwrap()));
 
     }
 
