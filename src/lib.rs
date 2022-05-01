@@ -75,14 +75,14 @@ pub struct Choicer {
     total_received: Balance,     //Ⓝ received as voter
     completed_choices: u16,
     current_choices: u16,
-	proposals_created: u16,
-	total_spending: Balance      //Ⓝ spended as proposal creator
+    proposals_created: u16,
+    total_spending: Balance      //Ⓝ spended as proposal creator
 }
 //Accumulate votes and multisend proposal funds to every submitted participant proportionally to votes for them
 #[derive(BorshSerialize, BorshDeserialize, Debug, PartialEq, Clone)]
 struct VoteEngine {
-	weights:Vec<f64>,
-	results:Vec<HashMap<String, f64>>,
+    weights:Vec<f64>,
+    results:Vec<HashMap<String, f64>>,
 }
 
 #[near_bindgen]
@@ -90,7 +90,7 @@ struct VoteEngine {
 pub struct Contract {
     proposals : UnorderedMap<ProposalId, Proposal>,      
     choicers   : LookupMap<AccountId, Choicer>,
-	vote_engine : VoteEngine                             
+    vote_engine : VoteEngine                             
 }
 //impl Default panic -todo
 
