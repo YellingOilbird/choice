@@ -12,7 +12,7 @@ So here we have implemented a functionality that provides a closed non-binary vo
 (
 			VoteType::ProjectElection,          
 			"create logo".to_string(),                    // title  
-            100_000_000_000_000_000_000_000_000,          // 100Ⓝ  
+                100_000_000_000_000_000_000_000_000,          // 100Ⓝ  
 			3,                                            // number of max_decisions  
 			"we need logo for our project".to_string()    // sample description  
 		);
