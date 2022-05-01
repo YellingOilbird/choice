@@ -1,5 +1,5 @@
 <div style="color:black">.
-<h1>
+<h1 style="background-color:#33475b">
     <img src="./assets/logo5.png"/>
     CHOICE
 </h1></div>
