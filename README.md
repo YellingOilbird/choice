@@ -1,5 +1,9 @@
-![image](https://raw.githubusercontent.com/YellingOilbird/choice/blob/master/assets/logo5.png)
-# CHOICE
+
+<h1>
+    <img src="./assets/logo5.png"/>
+    CHOICE
+</h1>
+
 ## Smart contract on NEAR blockchain
 
 It is a blockchain-based app which allows you to place a proposal and receive decisions from other registered users.
