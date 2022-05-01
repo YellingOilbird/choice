@@ -140,12 +140,12 @@ impl Contract {
         assert!(funds >= CREATOR_BOND, "Min deposit for proposal = {}Ⓝ", CREATOR_BOND);
         assert!(
             deposit > funds,
-			"You need fill your balance on {}Ⓝ 
-			to create proposal with funds value = {}Ⓝ", yton(funds - deposit), yton(funds) 
+            "You need fill your balance on {}Ⓝ 
+            to create proposal with funds value = {}Ⓝ", yton(funds - deposit), yton(funds) 
         );
 
         assert!(
-			title.len() <= MAX_TITLE_SIZE && metadata.len() <= MAX_METADATA_SIZE ,
+            title.len() <= MAX_TITLE_SIZE && metadata.len() <= MAX_METADATA_SIZE ,
             "Too many symbols. Max title size is {} . Max description metadata size is {}", MAX_TITLE_SIZE, MAX_METADATA_SIZE
         );
 
