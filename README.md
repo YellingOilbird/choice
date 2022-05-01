@@ -7,7 +7,7 @@ Usually the winner (the performer of the best decision) takes all the reward, wh
 So here we have implemented a functionality that provides a closed non-binary voting between proposal participants for the best decision.
 
 ### App logic
-##### Proposal created by Choice member ```creator.near```
+### Proposal created by Choice member ```creator.near```
 ```rust
 (
 			VoteType::ProjectElection,          
@@ -25,7 +25,7 @@ So here we have implemented a functionality that provides a closed non-binary vo
 *number of max_decisions = 3, sorry, ```participant_4.near```, you are late*
 #####
 ---
-###### So, time is over. Now we don't take any decisions. Vote stage is starting here
+### So, time is over. Now we don't take any decisions. Vote stage is starting here
 Every user, who submit decision into this proposal is eligible to vote. Of course, you cannot vote for self.
 It will be fully realized on frontend side. Here is this process:
 **format - account : place**
@@ -36,7 +36,7 @@ What we see right here:
 - participant_1.near appears two times at 1st place,
 - participant_2.near appears one time at 1st place, and one time at 2nd place,
 - participant_3.near appears two times at 3rd place
-###### Vote stage finished. Vote engine calculate all votes like this:
+### Vote stage finished. Vote engine calculate all votes like this:
 w1 - weight multiply for 1st place = 2 * w2 
 w2 - weight multiply for 2nd place 
 ```rust
