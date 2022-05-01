@@ -126,26 +126,28 @@ impl Contract {
 	) {
 
         let predecessor = env::predecessor_account_id();
-		assert!(
-			self.choicers.contains_key(&predecessor),
-			"You must create a membership first to push your proposals"
-		);
+        assert!(
+            self.choicers.contains_key(&predecessor),
+            "You must create a membership first to push your proposals"
+        );
 
         let deposit = env::attached_deposit();
         assert!(
-			deposit >= CREATOR_BOND,
-			"You need have at least 10Ⓝ to create proposal" 
+            deposit >= CREATOR_BOND,
+            "You need have at least 10Ⓝ to create proposal" 
         );
 
         assert!(funds >= CREATOR_BOND, "Min deposit for proposal = {}Ⓝ", CREATOR_BOND);
         assert!(
-        	deposit > funds,
-        	"You need fill your balance on {}Ⓝ 
-        	to create proposal with funds value = {}Ⓝ", yton(funds - deposit), yton(funds) 
+            deposit > funds,
+			"You need fill your balance on {}Ⓝ 
+			to create proposal with funds value = {}Ⓝ", yton(funds - deposit), yton(funds) 
         );
 
-        assert!(title.len() <= MAX_TITLE_SIZE && metadata.len() <= MAX_METADATA_SIZE ,
-        "Too many symbols. Max title size is {} . Max description metadata size is {}", MAX_TITLE_SIZE, MAX_METADATA_SIZE);
+        assert!(
+			title.len() <= MAX_TITLE_SIZE && metadata.len() <= MAX_METADATA_SIZE ,
+            "Too many symbols. Max title size is {} . Max description metadata size is {}", MAX_TITLE_SIZE, MAX_METADATA_SIZE
+        );
 
         let performer = env::predecessor_account_id();
         //let proposal_id = bs58::encode(env::sha256(&env::random_seed())).into_string(); 
