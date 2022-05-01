@@ -498,6 +498,7 @@ mod tests {
     use super::*;
 	use near_sdk::{ AccountId, MockedBlockchain };
     use near_sdk::{testing_env, VMContext, VMConfig, RuntimeFeesConfig};
+
     fn creator() -> String {
         "creator.near".to_string()
     }
@@ -510,26 +511,27 @@ mod tests {
     fn participant_3() -> String {
 		"participant_3.near".to_string()
 	}
-	fn participant_4() -> String {
+    fn participant_4() -> String {
 		"participant_4.near".to_string()
 	}
-	fn participant_5() -> String {
+    fn participant_5() -> String {
 		"participant_5.near".to_string()
 	}
-	fn participant_6() -> String {
+    fn participant_6() -> String {
 		"participant_6.near".to_string()
 	}
-	fn participant_7() -> String {
+    fn participant_7() -> String {
 		"participant_7.near".to_string()
 	}
 
 
-	fn bob() -> String {
+    fn bob() -> String {
         "bob.near".to_string()
     }
-	fn alice() -> String {
+    fn alice() -> String {
         "alice.near".to_string()
     }
+    
     fn get_context(predecessor_account_id: String) -> VMContext {
         VMContext {
             current_account_id: alice(),
