@@ -12,7 +12,7 @@ So here we have implemented a functionality that provides a closed non-binary vo
 (
 			VoteType::ProjectElection,          
 			"create logo".to_string(),                    // title  
-                    100_000_000_000_000_000_000_000_000,          // 100Ⓝ  
+                        100_000_000_000_000_000_000_000_000,          // 100Ⓝ  
 			3,                                            // number of max_decisions  
 			"we need logo for our project".to_string()    // sample description  
 		);
@@ -28,10 +28,12 @@ So here we have implemented a functionality that provides a closed non-binary vo
 ### So, time is over. Now we don't take any decisions. Vote stage is starting here
 Every user, who submit decision into this proposal is eligible to vote. Of course, you cannot vote for self.
 It will be fully realized on frontend side. Here is this process:
-**format - account : place**
-👨```participant_1.near``` =>  {"participant_2.near": 1.0,..."participant_3.near": 2.0}
-👨```participant_2.near``` =>  {"participant_1.near": 1.0,..."participant_3.near": 2.0}
-👨```participant_3.near``` =>  {"participant_1.near": 1.0,..."participant_2.near": 2.0}
+**format - account : place**  
+
+👨```participant_1.near``` =>  {"participant_2.near": 1.0,..."participant_3.near": 2.0}  
+👨```participant_2.near``` =>  {"participant_1.near": 1.0,..."participant_3.near": 2.0}  
+👨```participant_3.near``` =>  {"participant_1.near": 1.0,..."participant_2.near": 2.0}  
+
 What we see right here: 
 - participant_1.near appears two times at 1st place,
 - participant_2.near appears one time at 1st place, and one time at 2nd place,
@@ -75,11 +77,11 @@ $near deploy <ACCOUNT.MASTERACCOUNT> --wasmFile res/choice.wasm'
 ---
 
 #### Methods:
+*```near```commands wiil be right here little bit later*
+*⚰️ methods wiil deprecated and changed to automatic based on Duration functions*
+
 ```create_membership()```                    - create new membership in app
 ##### CREATOR SIDE
-*<near> commands wiil be right here little bit later*
-*⚰️ methods wiil deprecated and changed to automatic based on Duration functions*
----
 ```create_proposal(...)```                   - create new proposal 
 ```change_funds(proposal_id, new funds)```   - change proposal attached funds (only before voting starts!) 
 ```view_decisions(proposal_id)```            - returns all submitted decisions for proposal  
