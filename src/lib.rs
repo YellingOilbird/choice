@@ -315,38 +315,38 @@ impl Contract {
     }
 
     #[payable]
-	//send your ranged and ordering votes for decisions. TODO: checking for predecessor submitted decision in proposal
-	pub fn vote(&mut self, proposal_id: String, vote: HashMap<String, f64>) { 
+    //send your ranged and ordering votes for decisions. TODO: checking for predecessor submitted decision in proposal
+    pub fn vote(&mut self, proposal_id: String, vote: HashMap<String, f64>) { 
         let member_id = env::predecessor_account_id();
-		assert!(self.is_a_member(member_id.clone()),"You are not member. Create membership via same name function");
-		
+        assert!(self.is_a_member(member_id.clone()),"You are not member. Create membership via same name function");
+        
 		let mut proposal = self.proposals
             .get(&proposal_id)
             .expect(&(format!("No proposal with that id {}",&proposal_id)));
-		assert!(proposal.status == ProposalStatus::Vote, "Election is not started. Now proposal is still open");
+        assert!(proposal.status == ProposalStatus::Vote, "Election is not started. Now proposal is still open");
 
-		let choice = Votes {
-			from: member_id,
-			vote
-		};
+        let choice = Votes {
+            from: member_id,
+            vote
+        };
 
-		proposal.vote_results.push(choice);
+        proposal.vote_results.push(choice);
 
-		self.proposals.insert(&proposal_id, &proposal);
-	}
-	//see all votes from choicers before final counted. status: Vote
-	pub fn view_vote_board(&self, proposal_id: String ) -> Vec<Votes> { 
+        self.proposals.insert(&proposal_id, &proposal);
+    }
+    //see all votes from choicers before final counted. status: Vote
+    pub fn view_vote_board(&self, proposal_id: String ) -> Vec<Votes> { 
         let proposal = self.proposals
             .get(&proposal_id)
             .expect(&(format!("No proposal with that title {}",&proposal_id)));
-		assert!(proposal.status == ProposalStatus::Vote, "Election not started. Now proposal is still open");
-		proposal.vote_results
-	} 
+        assert!(proposal.status == ProposalStatus::Vote, "Election not started. Now proposal is still open");
+        proposal.vote_results
+    } 
 //---------------------------------------------------------
-//VOTE ENGINE
-	// Calculate weights for vote table places. 
-	//  Depends on number of participants (p) and proposal funds for disperse
-	fn set_weights(&self, p: usize, funds: f64) -> Vec<f64> {
+    //VOTE ENGINE
+    // Calculate weights for vote table places. 
+    //  Depends on number of participants (p) and proposal funds for disperse
+    fn set_weights(&self, p: usize, funds: f64) -> Vec<f64> {
 		let p:i32 = p as i32;
 		let f:f64 = funds;
 		
