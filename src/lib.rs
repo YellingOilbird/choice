@@ -652,44 +652,44 @@ mod tests {
         contract.vote(
             "creator.near001".to_string(),
             HashMap::from([
-				("participant_1.near".to_string(), 1.0),
-				("participant_3.near".to_string(), 2.0),
-				("participant_4.near".to_string(), 3.0),
-				("participant_5.near".to_string(), 4.0),
-				("participant_6.near".to_string(), 5.0),
-				("participant_7.near".to_string(), 6.0),
-			])
+                ("participant_1.near".to_string(), 1.0),
+                ("participant_3.near".to_string(), 2.0),
+                ("participant_4.near".to_string(), 3.0),
+                ("participant_5.near".to_string(), 4.0),
+                ("participant_6.near".to_string(), 5.0),
+                ("participant_7.near".to_string(), 6.0),
+            ])
         );
-		//PARTICIPANT_3 CONTEXT. VOTE
-		testing_env!(
-			get_context(participant_3())
+        //PARTICIPANT_3 CONTEXT. VOTE
+        testing_env!(
+            get_context(participant_3())
+        );
+        contract.vote(
+            "creator.near001".to_string(),
+            HashMap::from([
+                ("participant_2.near".to_string(), 1.0),
+                ("participant_7.near".to_string(), 2.0),
+                ("participant_1.near".to_string(), 3.0),
+                ("participant_4.near".to_string(), 4.0),
+                ("participant_6.near".to_string(), 5.0),
+                ("participant_5.near".to_string(), 6.0),
+            ]) 
+        );
+        //PARTICIPANT_4 CONTEXT. VOTE
+        testing_env!(
+            get_context(participant_4())
+        );
+        contract.vote(
+            "creator.near001".to_string(),
+            HashMap::from([
+                ("participant_7.near".to_string(), 1.0),
+                ("participant_2.near".to_string(), 2.0),
+                ("participant_1.near".to_string(), 3.0),
+                ("participant_3.near".to_string(), 4.0),
+                ("participant_6.near".to_string(), 5.0),
+                ("participant_5.near".to_string(), 6.0),
+			]) 
 		);
-		contract.vote(
-			"creator.near001".to_string(),
-		    HashMap::from([
-				("participant_2.near".to_string(), 1.0),
-				("participant_7.near".to_string(), 2.0),
-				("participant_1.near".to_string(), 3.0),
-				("participant_4.near".to_string(), 4.0),
-				("participant_6.near".to_string(), 5.0),
-				("participant_5.near".to_string(), 6.0),
-				])
-			);
-		//PARTICIPANT_4 CONTEXT. VOTE
-		testing_env!(
-			get_context(participant_4())
-		);
-		contract.vote(
-			"creator.near001".to_string(),
-		    HashMap::from([
-				("participant_7.near".to_string(), 1.0),
-				("participant_2.near".to_string(), 2.0),
-				("participant_1.near".to_string(), 3.0),
-				("participant_3.near".to_string(), 4.0),
-				("participant_6.near".to_string(), 5.0),
-				("participant_5.near".to_string(), 6.0),
-				])
-			);
 		//PARTICIPANT_5 CONTEXT. VOTE
 		testing_env!(
 			get_context(participant_5())
