@@ -112,9 +112,9 @@ impl Contract {
 			}
         }
     }
-    //CREATOR SIDE
+//CREATOR SIDE
 	#[payable]
-pub fn create_proposal(
+    pub fn create_proposal(
         &mut self,
 		vote_type : VoteType,
         title : String,
@@ -187,7 +187,7 @@ pub fn create_proposal(
             .decisions
     }
 
-#[payable]
+	#[payable]
     pub fn change_funds(
         &mut self,
         proposal_id: String,
@@ -225,7 +225,7 @@ pub fn create_proposal(
 		self.proposals.insert(&proposal_id,&proposal);
 	} 
 
-	//CHOICER SIDE
+//CHOICER SIDE
     #[payable]
     pub fn create_membership(&mut self) {
         assert!(
@@ -335,8 +335,8 @@ pub fn create_proposal(
 		assert!(proposal.status == ProposalStatus::Vote, "Election not started. Now proposal is still open");
 		proposal.vote_results
 	} 
-    //---------------------------------------------------------
-	//VOTE ENGINE
+//---------------------------------------------------------
+//VOTE ENGINE
 	// Calculate weights for vote table places. 
 	//  Depends on number of participants (p) and proposal funds for disperse
 	fn set_weights(&self, p: usize, funds: f64) -> Vec<f64> {
@@ -475,6 +475,7 @@ pub fn create_proposal(
 
 	} 
 }
+
 //Converter helper
 fn yton(yocto_amount: Balance) -> Balance {
 	yocto_amount  / 10u128.pow(24)
