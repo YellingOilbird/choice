@@ -38,8 +38,8 @@ pub struct Proposal {
 }
 #[derive(BorshDeserialize, BorshSerialize, Debug, Clone)]
 pub struct Decision {
-	performer : AccountId,
-	metadata : String
+    performer : AccountId,
+    metadata : String
 }
 //It's not like (Yes/No) votes. You must ordering users from best to worst like:
 //  1st place  - "account_1.near"
@@ -48,16 +48,16 @@ pub struct Decision {
 //  last place - "account_last.near"
 #[derive(BorshDeserialize, BorshSerialize, Debug, Serialize, Deserialize, Clone)]
 pub struct Votes {
-	from: AccountId,
-	vote: HashMap<String, f64>
+    from: AccountId,
+    vote: HashMap<String, f64>
 }
 #[derive(BorshSerialize, BorshDeserialize, Serialize, Deserialize, Clone, PartialEq, Debug)]
 #[serde(crate="near_sdk::serde")]
 #[serde(tag="type")]
 pub enum ProposalStatus {
-	Open,
-	Vote,
-	Payout
+    Open,
+    Vote,
+    Payout
 }
 #[derive(BorshSerialize, BorshDeserialize, Serialize, Deserialize, Debug, Clone)]
 #[serde(crate="near_sdk::serde")]
@@ -65,8 +65,8 @@ pub enum ProposalStatus {
 //TODO: proposals will be not only for contests votes. DAO's can made Project Election vote, which allows
 //      disperse pool funds for investments proportionally election decisions 
 pub enum VoteType {
-	PerformerElection,
-	ProjectElection
+    PerformerElection,
+    ProjectElection
 }
 #[derive(BorshDeserialize, BorshSerialize, Debug)]
 //choicer - standart member of application
