@@ -116,39 +116,39 @@ impl Contract {
     #[payable]
     pub fn create_proposal(
         &mut self,
-		vote_type : VoteType,
+        vote_type : VoteType,
         title : String,
         funds : Balance,
-		max_decisions : u16,
-	    //proposal_duration : Duration,
-	    //vote_duration : Duration, 
+        max_decisions : u16,
+        //proposal_duration : Duration,
+        //vote_duration : Duration, 
         metadata : String,
-        ) {
-		let predecessor = env::predecessor_account_id();
-		assert!(
-			self.choicers.contains_key(&predecessor),
-			"You must create a membership first to push your proposals"
-		);
+	) {
+        let predecessor = env::predecessor_account_id();
+        assert!(
+        	self.choicers.contains_key(&predecessor),
+        	"You must create a membership first to push your proposals"
+        );
 
-		let deposit = env::attached_deposit();
-		assert!(
-			deposit >= CREATOR_BOND,
-			"You need have at least 10Ⓝ to create proposal"
-		);
+        let deposit = env::attached_deposit();
+        assert!(
+        	deposit >= CREATOR_BOND,
+            "You need have at least 10Ⓝ to create proposal"
+        );
 
         assert!(funds >= CREATOR_BOND, "Min deposit for proposal = {}Ⓝ", CREATOR_BOND);
-		assert!(
-			deposit > funds,
-			"You need fill your balance on {}Ⓝ 
-			to create proposal with funds value = {}Ⓝ", yton(funds - deposit), yton(funds) 
-		);
+        assert!(
+        	deposit > funds,
+        	"You need fill your balance on {}Ⓝ 
+        	to create proposal with funds value = {}Ⓝ", yton(funds - deposit), yton(funds) 
+        );
 
-		assert!(title.len() <= MAX_TITLE_SIZE && metadata.len() <= MAX_METADATA_SIZE ,
+        assert!(title.len() <= MAX_TITLE_SIZE && metadata.len() <= MAX_METADATA_SIZE ,
         "Too many symbols. Max title size is {} . Max description metadata size is {}", MAX_TITLE_SIZE, MAX_METADATA_SIZE);
 
         let performer = env::predecessor_account_id();
-		//let proposal_id = bs58::encode(env::sha256(&env::random_seed())).into_string(); 
-		let proposal_id = performer.to_string()+"001";                //for tests
+        //let proposal_id = bs58::encode(env::sha256(&env::random_seed())).into_string(); 
+        let proposal_id = performer.to_string()+"001";                //for tests
         let proposal = Proposal {
 			status : ProposalStatus::Open,
 			vote_type,
@@ -167,14 +167,14 @@ impl Contract {
 	
 		env::log_str(&(format!("Wow! Created a new Proposal: id {} proposal {:#?}", &proposal_id, &proposal).to_string()));
 		
-		let mut choicer = self.choicers
-			    .get(&predecessor)
-				.expect(&(format!("No choicer with id @{}",predecessor)));
+        let mut choicer = self.choicers
+		        .get(&predecessor)
+		        .expect(&(format!("No choicer with id @{}",predecessor)));
 
-			choicer.current_choices += 1;
-			choicer.proposals_created += 1;
-			self.choicers.insert(&predecessor,&choicer);
-        self.proposals.insert(&proposal_id, &proposal);
+		    choicer.current_choices += 1;
+		    choicer.proposals_created += 1;
+		    self.choicers.insert(&predecessor,&choicer);
+	    self.proposals.insert(&proposal_id, &proposal);
     }
 
     pub fn view_decisions(
@@ -187,42 +187,42 @@ impl Contract {
             .decisions
     }
 
-	#[payable]
+    #[payable]
     pub fn change_funds(
-        &mut self,
-        proposal_id: String,
-        new_funds: f64
+		&mut self,
+		proposal_id: String,
+		new_funds: f64
     ) {
-        let mut proposal = self.proposals
-            .get(&proposal_id)
+		let mut proposal = self.proposals
+		    .get(&proposal_id)
             .expect(&(format!("No proposal with that id {}",proposal_id)));
 
-        assert!(proposal.status == ProposalStatus::Open, "Proposal must be in Open status for changing funds");
+            assert!(proposal.status == ProposalStatus::Open, "Proposal must be in Open status for changing funds");
 
         let owner = env::predecessor_account_id();
-        assert!(
+		assert!(
             proposal.owner == owner,
             "Only proposal creator can change funds"
-        );
-		let old_funds = proposal.funds;
+		);
+        let old_funds = proposal.funds;
         proposal.funds = ntoy(new_funds as Balance);
-		self.proposals.insert(&proposal_id,&proposal);
-		env::log_str(&(format!("Change funds from {}Ⓝ into {}Ⓝ  for proposal: {} ", yton(old_funds), yton(proposal.funds), proposal.title)));
+        self.proposals.insert(&proposal_id,&proposal);
+        env::log_str(&(format!("Change funds from {}Ⓝ into {}Ⓝ  for proposal: {} ", yton(old_funds), yton(proposal.funds), proposal.title)));
     }
-	//TODO: Made it actions when time = estimated_time for it (via Duration)
-	fn start_election(&mut self, proposal_id: String) {
+    //TODO: Made it actions when time = estimated_time for it (via Duration) 
+    fn start_election(&mut self, proposal_id: String) {
 		let mut proposal = self.proposals
-            .get(&proposal_id)
+		    .get(&proposal_id)
             .expect(&(format!("No proposal with that id {}",&proposal_id)));
         proposal.status = ProposalStatus::Vote;
-		self.proposals.insert(&proposal_id,&proposal);
+	    self.proposals.insert(&proposal_id,&proposal);
 	}
-	fn finish_election(&mut self, proposal_id: String) {
+    fn finish_election(&mut self, proposal_id: String) {
         let mut proposal = self.proposals
             .get(&proposal_id)
-            .expect(&(format!("No proposal with that id {}",&proposal_id)));
+			.expect(&(format!("No proposal with that id {}",&proposal_id)));
 		proposal.status = ProposalStatus::Payout;
-		self.proposals.insert(&proposal_id,&proposal);
+        self.proposals.insert(&proposal_id,&proposal);
 	} 
 
 //CHOICER SIDE
