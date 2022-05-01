@@ -399,10 +399,8 @@ impl Contract {
         let v = self.vote_engine.results.clone();
         let bomb = v.into_par_iter()
             .fold(||HashMap::new(), |mut a: HashMap<String, f64>, b| {
-	   
-		    a.extend(b);
-	    
-            a
+                a.extend(b);
+                a
         }).reduce(||HashMap::new(),|mut a, b| {
             for (k, v) in b {
 				if a.contains_key(&k) {
