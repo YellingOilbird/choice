@@ -298,7 +298,7 @@ impl Contract {
 
         let member_id = env::predecessor_account_id();
         let mut choicer = self.choicers
-		    .get(&member_id)
+            .get(&member_id)
             .expect(&(format!("No choicer with id @{}",member_id)));
 
         choicer.current_choices += 1;
