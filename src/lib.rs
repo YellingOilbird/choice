@@ -263,24 +263,24 @@ impl Contract {
             .status;
         status == ProposalStatus::Open
     }
-	pub fn view_active_proposals(
+    pub fn view_active_proposals(
         &self,
     ) -> UnorderedMap<ProposalId,Proposal> {
         let proposals = &self.proposals;
         let mut active_proposals: UnorderedMap<String, Proposal> = UnorderedMap::new(b"active".to_vec());
         for proposal in proposals.values() {
             if self.is_active_proposal(proposal.id.clone()) == true {
-				active_proposals.insert(&proposal.id, &proposal);
-			}
+                active_proposals.insert(&proposal.id, &proposal);
+            }
         }
         active_proposals
-	} 
+    } 
     pub fn is_a_member(&self, id: AccountId) -> bool {
-		match self.choicers.get(&id) {
-			Some(_v) => true,
-			None => false
-		}
-	}
+        match self.choicers.get(&id) {
+            Some(_v) => true,
+            None => false
+        }
+    }
 	//TODO: Add checking "is_proposal_owner?". Cause creator cannot vote/submit for their proposals
 	pub fn submit_decision(&mut self, proposal_id: String, metadata: String) {
         let predecessor = env::predecessor_account_id();
