@@ -1,4 +1,4 @@
-<span style="background-color:black">.
+<span style="color:black">.
 <h1>
     <img src="./assets/logo5.png"/>
     CHOICE
