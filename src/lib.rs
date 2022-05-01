@@ -216,19 +216,21 @@ impl Contract {
     }
     //TODO: Made it actions when time = estimated_time for it (via Duration) 
     fn start_election(&mut self, proposal_id: String) {
-		let mut proposal = self.proposals
-		    .get(&proposal_id)
-            .expect(&(format!("No proposal with that id {}",&proposal_id)));
-        proposal.status = ProposalStatus::Vote;
-	    self.proposals.insert(&proposal_id,&proposal);
-	}
-    fn finish_election(&mut self, proposal_id: String) {
         let mut proposal = self.proposals
             .get(&proposal_id)
-			.expect(&(format!("No proposal with that id {}",&proposal_id)));
-		proposal.status = ProposalStatus::Payout;
+            .expect(&(format!("No proposal with that id {}",&proposal_id)));
+        proposal.status = ProposalStatus::Vote;
+
         self.proposals.insert(&proposal_id,&proposal);
-	} 
+    }
+    fn finish_election(&mut self, proposal_id: String) {
+        let mut proposal = self.proposal
+            .get(&proposal_id)
+            .expect(&(format!("No proposal with that id {}",&proposal_id)));
+        proposal.status = ProposalStatus::Payout;
+
+        self.proposals.insert(&proposal_id,&proposal);
+    } 
 
 //CHOICER SIDE
     #[payable]
