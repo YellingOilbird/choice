@@ -193,9 +193,9 @@ impl Contract {
 
     #[payable]
     pub fn change_funds(
-		&mut self,
-		proposal_id: String,
-		new_funds: f64
+        &mut self,
+        proposal_id: String,
+        new_funds: f64
     ) {
         let mut proposal = self.proposals
             .get(&proposal_id)
