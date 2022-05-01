@@ -401,7 +401,7 @@ impl Contract {
             .fold(||HashMap::new(), |mut a: HashMap<String, f64>, b| {
                 a.extend(b);
                 a
-        }).reduce(||HashMap::new(),|mut a, b| {
+            }).reduce(||HashMap::new(),|mut a, b| {
             for (k, v) in b {
 				if a.contains_key(&k) {
                     let x = a.get(&k).unwrap();
