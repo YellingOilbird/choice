@@ -374,8 +374,8 @@ impl Contract {
         assert!(proposal.status == ProposalStatus::Payout, "Election not finished. Now choicers are still voting");
        
         let p = proposal.vote_results.len();
-		let funds = proposal.funds.clone();
-		let converted_funds = yton(funds) as f64;
+        let funds = proposal.funds.clone();
+        let converted_funds = yton(funds) as f64;
 		//set weights for calculate
         self.vote_engine.weights = self.set_weights(p, converted_funds);
         
