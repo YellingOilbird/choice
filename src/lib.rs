@@ -153,22 +153,22 @@ impl Contract {
         //let proposal_id = bs58::encode(env::sha256(&env::random_seed())).into_string(); 
         let proposal_id = performer.to_string()+"001";                //for tests
         let proposal = Proposal {
-			status : ProposalStatus::Open,
-			vote_type,
-			id : proposal_id.clone(),
-			title,
-			funds,
-			owner : performer,
-			metadata,
-			max_decisions,
-			decisions : Vec::new(),
-			vote_results : Vec::new(),
-			start_time: env::block_timestamp(),
-			//proposal_duration,
-			//vote_duration            
-		};
+            status : ProposalStatus::Open,
+            vote_type,
+            id : proposal_id.clone(),
+            title,
+            funds,
+            owner : performer,
+            metadata,
+            max_decisions,
+            decisions : Vec::new(),
+            vote_results : Vec::new(),
+            start_time: env::block_timestamp(),
+            //proposal_duration,
+            //vote_duration            
+        };
 	
-		env::log_str(&(format!("Wow! Created a new Proposal: id {} proposal {:#?}", &proposal_id, &proposal).to_string()));
+        env::log_str(&(format!("Wow! Created a new Proposal: id {} proposal {:#?}", &proposal_id, &proposal).to_string()));
 		
         let mut choicer = self.choicers
 		        .get(&predecessor)
