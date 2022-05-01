@@ -537,7 +537,7 @@ mod tests {
             current_account_id: alice(),
             signer_account_id: bob(),
             signer_account_pk: vec![0, 1, 2],
-			attached_deposit: 1050_000_000_000_000_000_000_000_000, //1050Ⓝ 
+            attached_deposit: 1050_000_000_000_000_000_000_000_000, //1050Ⓝ 
             predecessor_account_id,
             input: vec![],
             block_index: 0,
@@ -555,10 +555,10 @@ mod tests {
 	
     #[test]
     fn test_create_proposals() {
-		//CREATOR CONTEXT. CREATE PROPOSALS
-		testing_env!(
-			get_context(creator())
-		);
+        //CREATOR CONTEXT. CREATE PROPOSALS
+        testing_env!(
+            get_context(creator())
+        );
 		env::log_str(format!("Balance ~{} Ⓝ for account @{}", yton(env::account_balance()), creator()).as_str());
         let mut contract = Contract::new();
 		contract.create_membership();
