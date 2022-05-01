@@ -126,10 +126,10 @@ impl Contract {
 	) {
 
         let predecessor = env::predecessor_account_id();
-        assert!(
+		assert!(
 			self.choicers.contains_key(&predecessor),
 			"You must create a membership first to push your proposals"
-        );
+		);
 
         let deposit = env::attached_deposit();
         assert!(
