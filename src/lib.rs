@@ -23,18 +23,18 @@ type ProposalId = String;
 //  when voting starts they can vote for them. When election stage will be finished they get raised proposal funds
 pub struct Proposal {
     status : ProposalStatus,
-	vote_type : VoteType,
-	id : ProposalId,
-	title : String,
-	funds : Balance,                 //Ⓝ attached to proposal
-	owner : AccountId,
-	metadata : String,               //description details
-	max_decisions : u16,
-	decisions : Vec<Decision>,
-	vote_results : Vec<Votes>,
-	start_time: Timestamp,
-	//proposal_duration : Duration,  //TODO: proposal creator can set estimated time values for submitting decisions 
-	//vote_duration : Duration,      //TODO: proposal creator can set estimated time values for submittting votes       
+    vote_type : VoteType,
+    id : ProposalId,
+    title : String,
+    funds : Balance,                 //Ⓝ attached to proposal
+    owner : AccountId,
+    metadata : String,               //description details
+    max_decisions : u16,
+    decisions : Vec<Decision>,
+    vote_results : Vec<Votes>,
+    start_time: Timestamp,
+    //proposal_duration : Duration,  //TODO: proposal creator can set estimated time values for submitting decisions 
+    //vote_duration : Duration,      //TODO: proposal creator can set estimated time values for submittting votes       
 }
 #[derive(BorshDeserialize, BorshSerialize, Debug, Clone)]
 pub struct Decision {
