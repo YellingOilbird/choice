@@ -114,7 +114,7 @@ impl Contract {
     }
     //CREATOR SIDE
 	#[payable]
-	    pub fn create_proposal(
+	pub fn create_proposal(
         &mut self,
 		vote_type : VoteType,
         title : String,
@@ -177,7 +177,7 @@ impl Contract {
         self.proposals.insert(&proposal_id, &proposal);
     }
 
-        pub fn view_decisions(
+    pub fn view_decisions(
         &self,
         proposal_id: String
     ) -> Vec<Decision> {
@@ -188,7 +188,7 @@ impl Contract {
     }
 
 	#[payable]
-        pub fn change_funds(
+    pub fn change_funds(
         &mut self,
         proposal_id: String,
         new_funds: f64
