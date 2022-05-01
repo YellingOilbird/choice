@@ -1,4 +1,4 @@
- ![choice](./assets/logo5.png?raw=true)] 
+![image](https://raw.githubusercontent.com/YellingOilbird/choice/master/logo5.png)
 # CHOICE
 ## Smart contract on NEAR blockchain
 
