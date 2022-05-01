@@ -320,7 +320,7 @@ impl Contract {
         let member_id = env::predecessor_account_id();
         assert!(self.is_a_member(member_id.clone()),"You are not member. Create membership via same name function");
         
-		let mut proposal = self.proposals
+        let mut proposal = self.proposals
             .get(&proposal_id)
             .expect(&(format!("No proposal with that id {}",&proposal_id)));
         assert!(proposal.status == ProposalStatus::Vote, "Election is not started. Now proposal is still open");
