@@ -347,26 +347,26 @@ impl Contract {
     // Calculate weights for vote table places. 
     //  Depends on number of participants (p) and proposal funds for disperse
     fn set_weights(&self, p: usize, funds: f64) -> Vec<f64> {
-	    let p:i32 = p as i32;
-	    let f:f64 = funds;
+        let p:i32 = p as i32;
+        let f:f64 = funds;
 	    
-	    let aw:usize = (p-1) as usize;
-	    let w_last = f/(p*(pow(2, aw) - 1)) as f64;
+        let aw:usize = (p-1) as usize;
+        let w_last = f/(p*(pow(2, aw) - 1)) as f64;
 		
-	    let mut vec: Vec<f64> = Vec::with_capacity(aw);
-	    let mut rev_vec: Vec<f64> = Vec::with_capacity(aw);
+        let mut vec: Vec<f64> = Vec::with_capacity(aw);
+        let mut rev_vec: Vec<f64> = Vec::with_capacity(aw);
 		
-	    // These are all done without reallocating...
-	    for i in 0..aw {
-			vec.push(pow(2, i) as f64 * w_last.clone())
-	    }
-	    for i in vec.iter().rev() {
-	    	rev_vec.push(*i)
-	    }
-	    rev_vec
+        // These are all done without reallocating...
+        for i in 0..aw {
+            vec.push(pow(2, i) as f64 * w_last.clone())
+        }
+        for i in vec.iter().rev() {
+            rev_vec.push(*i)
+        }
+        rev_vec
     }
-	//Accumulate all votes and calculate values for multisend proposal funds
-	fn calculate_vote_results(&mut self, proposal_id: String) -> HashMap<String, f64> {
+    //Accumulate all votes and calculate values for multisend proposal funds
+    fn calculate_vote_results(&mut self, proposal_id: String) -> HashMap<String, f64> {
 
         let proposal = self.proposals
             .get(&proposal_id)
@@ -377,60 +377,61 @@ impl Contract {
 		let funds = proposal.funds.clone();
 		let converted_funds = yton(funds) as f64;
 		//set weights for calculate
-		self.vote_engine.weights = self.set_weights(p, converted_funds);
+        self.vote_engine.weights = self.set_weights(p, converted_funds);
         
 		//Get vote results from contract
         let votes = proposal.vote_results;
         let mut results:Vec<HashMap<String, f64>> = Vec::new();
 		for i in votes.into_iter() {
-			results.push(i.vote)
-		}
-		//Convert every vote from vote results
-		for mut i in results.into_iter() {
-			//participant place in votes changes ( x => weights[x-1] )
+            results.push(i.vote)
+        }
+        //Convert every vote from vote results
+        for mut i in results.into_iter() {
+            //participant place in votes changes ( x => weights[x-1] )
             for item in i.values_mut() {
                 *item = self.vote_engine.weights[(*item-1.0) as usize];
-			}
+            }
             //push converted(weighted) results back
-			self.vote_engine.results.push(i)
-		}
+            self.vote_engine.results.push(i)
+        }
         
-		//accumulate all results in one instruction for multisend
+        //accumulate all results in one instruction for multisend
 
         let v = self.vote_engine.results.clone();
         let bomb = v.into_par_iter()
             .fold(||HashMap::new(), |mut a: HashMap<String, f64>, b| {
 	   
-	        a.extend(b);
+		    a.extend(b);
 	    
-	        a
-	    }).reduce(||HashMap::new(),|mut a, b| {
+            a
+        }).reduce(||HashMap::new(),|mut a, b| {
             for (k, v) in b {
-            if a.contains_key(&k) {
-                let x = a.get(&k).unwrap();
-                a.insert(k, v + x);
+				if a.contains_key(&k) {
+                    let x = a.get(&k).unwrap();
+					a.insert(k, v + x);
             } else {
-                a.insert(k, v);
+                    a.insert(k, v);
             }
         }
-            a
+		    a
         });
         bomb
-	}
+    }
 
-	//Payout. Ⓝ mutisender based on vote results
-	fn payout(&mut self, proposal_id: String) {
+    //Payout. Ⓝ mutisender based on vote results
+    fn payout(&mut self, proposal_id: String) {
         let proposal = self.proposals
             .get(&proposal_id)
             .expect(&(format!("No proposal with id {}",proposal_id))); 
+        
         assert!(proposal.status == ProposalStatus::Payout, "Election not finished. Now choicers are still voting");
 
-		let votes = self.calculate_vote_results(proposal_id);
-		let predecessor = env::predecessor_account_id();
+        let votes = self.calculate_vote_results(proposal_id);
+        let predecessor = env::predecessor_account_id();
         let deposit: Balance = proposal.funds;
 
         let mut total: f64 = 0.0;
-		//Check accounts from votes and calculate sending total
+        //Check accounts from votes and calculate sending total
         for account in votes.keys() {
             assert!(
                 env::is_valid_account_id(predecessor.as_bytes()),
@@ -445,47 +446,49 @@ impl Contract {
         env::log_str(format!("Sending {}Ⓝ", total).as_str());
 
 		let total_spending = total as Balance;
-        assert!(
+		assert!(
             total_spending <= yton(deposit),
             "Not enough attached tokens to run multisender (Supplied: {}Ⓝ. Demand: {}Ⓝ)",
             yton(deposit),
             total_spending
         );
-		//Send Ⓝ proportionally vote results
+        //Send Ⓝ proportionally vote results
         for vote in votes {
             let (account_id,amount) = vote;
-			let amount_u128:Balance = (amount.round()) as Balance;
+            let amount_u128:Balance = (amount.round()) as Balance;
 
-            env::log_str(format!("Sending ~{}Ⓝ to account @{}", amount_u128, account_id).as_str());
+			env::log_str(format!("Sending ~{}Ⓝ to account @{}", amount_u128, account_id).as_str());
             
-			let account_id:AccountId = account_id.parse().unwrap();
+            let account_id:AccountId = account_id.parse().unwrap();
             let mut choicer = self.choicers
-			    .get(&account_id)
-				.expect(&(format!("No choicer with id @{}",account_id)));
+                .get(&account_id)
+                .expect(&(format!("No choicer with id @{}",account_id)));
 
-			choicer.completed_choices += 1;
-			choicer.total_received += amount as Balance;
-			choicer.current_choices -= 1;
-			self.choicers.insert(&account_id,&choicer);
+            choicer.completed_choices += 1;
+            choicer.total_received += amount as Balance;
+            choicer.current_choices -= 1;
+            
+            self.choicers.insert(&account_id,&choicer);
 
             Promise::new(account_id).transfer(amount_u128);
         }
 
-		let mut choicer = self.choicers
-			    .get(&predecessor)
-				.expect(&(format!("No choicer with id @{}",predecessor)));
+        let mut choicer = self.choicers
+                .get(&predecessor)
+                .expect(&(format!("No choicer with id @{}",predecessor)));
 
-			choicer.completed_choices += 1;
-			choicer.current_choices -= 1;
-			choicer.total_spending += total_spending;
-			self.choicers.insert(&predecessor,&choicer);
+            choicer.completed_choices += 1;
+            choicer.current_choices -= 1;
+            choicer.total_spending += total_spending;
 
-	} 
+            self.choicers.insert(&predecessor,&choicer);
+
+    } 
 }
 
 //Converter helper
 fn yton(yocto_amount: Balance) -> Balance {
-	yocto_amount  / 10u128.pow(24)
+    yocto_amount  / 10u128.pow(24)
 }
 fn ntoy(near_amount: Balance) -> Balance {
     near_amount * 10u128.pow(24)
