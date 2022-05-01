@@ -187,7 +187,7 @@ pub fn create_proposal(
             .decisions
     }
 
-	#[payable]
+#[payable]
     pub fn change_funds(
         &mut self,
         proposal_id: String,
