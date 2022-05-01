@@ -410,7 +410,7 @@ impl Contract {
                     a.insert(k, v);
                 }
             }
-		    a
+            a
         });
         bomb
     }
