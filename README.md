@@ -1,5 +1,4 @@
-# CHOICE 
-![img](https://github.com/YellingOilbird/choice/assets/logo2.svg)] 
+ ![choice](https://github.com/YellingOilbird/choice/assets/logo5.png)] # CHOICE
 ## Smart contract on NEAR blockchain
 
 It is a blockchain-based app which allows you to place a proposal and receive decisions from other registered users.
@@ -90,8 +89,7 @@ $near deploy <ACCOUNT.MASTERACCOUNT> --wasmFile res/choice.wasm'
 ##### CHOICER SIDE 
 ```view_active_proposals()```                 - returns all open proposals    
 ```submit_decision(proposal_id, metadata)```  - submit your decision in proposal (it can be link on github)     
-```vote(proposal_id, vote)```                 - vote in format ```{"account_1.near": 1.0,..."account_n.near": n.0  
-```view_vote_board(proposal_id)```            - returns all votes for proposal  
+```vote(proposal_id, vote)```                 - vote in format ```{"account_1.near": 1.0,..."account_n.near": n.0}```   ```view_vote_board(proposal_id)```            - returns all votes for proposal  
 ##### VOTE ENGINE       
 *⚰️*```payout(proposal_id)```                 - disperse funds according to the vote results  
 
