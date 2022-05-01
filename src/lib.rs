@@ -396,7 +396,6 @@ impl Contract {
         }
         
         //accumulate all results in one instruction for multisend
-
         let v = self.vote_engine.results.clone();
         let bomb = v.into_par_iter()
             .fold(||HashMap::new(), |mut a: HashMap<String, f64>, b| {
