@@ -509,7 +509,7 @@ mod tests {
         "participant_2.near".to_string()
     }
     fn participant_3() -> String {
-		"participant_3.near".to_string()
+        "participant_3.near".to_string()
     }
     fn participant_4() -> String {
         "participant_4.near".to_string()
