@@ -643,23 +643,23 @@ mod tests {
                 ("participant_4.near".to_string(), 4.0),
                 ("participant_6.near".to_string(), 5.0),
                 ("participant_5.near".to_string(), 6.0),
-                ])
-			);
-		//PARTICIPANT_2 CONTEXT. VOTE
-		testing_env!(
-			get_context(participant_2())
-		);
-		contract.vote(
-			"creator.near001".to_string(),
-		    HashMap::from([
+            ])
+        );
+        //PARTICIPANT_2 CONTEXT. VOTE
+        testing_env!(
+            get_context(participant_2())
+        );
+        contract.vote(
+            "creator.near001".to_string(),
+            HashMap::from([
 				("participant_1.near".to_string(), 1.0),
 				("participant_3.near".to_string(), 2.0),
 				("participant_4.near".to_string(), 3.0),
 				("participant_5.near".to_string(), 4.0),
 				("participant_6.near".to_string(), 5.0),
 				("participant_7.near".to_string(), 6.0),
-				])
-			);
+			])
+        );
 		//PARTICIPANT_3 CONTEXT. VOTE
 		testing_env!(
 			get_context(participant_3())
