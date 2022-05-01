@@ -442,8 +442,8 @@ impl Contract {
 
         env::log_str(format!("Sending {}Ⓝ", total).as_str());
 
-		let total_spending = total as Balance;
-		assert!(
+        let total_spending = total as Balance;
+        assert!(
             total_spending <= yton(deposit),
             "Not enough attached tokens to run multisender (Supplied: {}Ⓝ. Demand: {}Ⓝ)",
             yton(deposit),
