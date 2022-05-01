@@ -243,18 +243,17 @@ impl Contract {
         let member_id = env::predecessor_account_id();
 
         let member = Choicer {
-			account_id:member_id.clone(),
-			total_received:0,
-			completed_choices:0,
-			current_choices:0,
-			proposals_created: 0,
-			total_spending: 0 
-		};
+            account_id:member_id.clone(),
+            total_received:0,
+            completed_choices:0,
+            current_choices:0,
+            proposals_created: 0,
+            total_spending: 0 
+        };
 
         env::log_str(&(format!("Choicer membership created. info: {:#?}", member)));
 
-        self.choicers
-            .insert(&member_id, &member);
+        self.choicers.insert(&member_id, &member);
     }
 	//view all proposals with "Open" status
 	fn is_active_proposal(&self, proposal_id: String) -> bool {
@@ -262,8 +261,8 @@ impl Contract {
             .get(&proposal_id)
             .expect(&(format!("No proposal with id {}",proposal_id)))
             .status;
-		status == ProposalStatus::Open
-	}
+        status == ProposalStatus::Open
+    }
 	pub fn view_active_proposals(
         &self,
     ) -> UnorderedMap<ProposalId,Proposal> {
