@@ -106,10 +106,10 @@ impl Contract {
         Self {
             proposals: UnorderedMap::new(b"proposals".to_vec()),
             choicers: LookupMap::new(b"choicers".to_vec()),
-			vote_engine : VoteEngine { 
-				weights: Vec::new(),
-				results: Vec::new()
-			}
+		    vote_engine : VoteEngine { 
+		    	weights: Vec::new(),
+		    	results: Vec::new()
+		    }
         }
     }
     //CREATOR SIDE
