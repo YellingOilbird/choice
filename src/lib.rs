@@ -563,11 +563,11 @@ mod tests {
         let mut contract = Contract::new();
         contract.create_membership();
         contract.create_proposal(
-			VoteType::ProjectElection,
-			"create logo".to_string(),
+            VoteType::ProjectElection,
+            "create logo".to_string(),
             10_000_000_000_000_000_000_000_000, // 10Ⓝ
-			10,
-			"we need logo for us".to_string()
+            10,
+            "we need logo for us".to_string()
 		);
 		contract.change_funds("creator.near001".to_string(), 200.0); // 10Ⓝ -> 200Ⓝ
 		println!("{:?}", contract.view_active_proposals().to_vec());
