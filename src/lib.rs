@@ -134,7 +134,7 @@ impl Contract {
         let deposit = env::attached_deposit();
         assert!(
             deposit >= CREATOR_BOND,
-        	"You need have at least 10Ⓝ to create proposal" 
+            "You need have at least 10Ⓝ to create proposal" 
         );
 
         assert!(funds >= CREATOR_BOND, "Min deposit for proposal = {}Ⓝ", CREATOR_BOND);
