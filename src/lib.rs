@@ -177,7 +177,7 @@ impl Contract {
         choicer.current_choices += 1;
         choicer.proposals_created += 1;
         self.choicers.insert(&predecessor,&choicer);
-		
+
         self.proposals.insert(&proposal_id, &proposal);
     }
 
@@ -197,19 +197,20 @@ impl Contract {
 		proposal_id: String,
 		new_funds: f64
     ) {
-		let mut proposal = self.proposals
-		    .get(&proposal_id)
+        let mut proposal = self.proposals
+            .get(&proposal_id)
             .expect(&(format!("No proposal with that id {}",proposal_id)));
 
-            assert!(proposal.status == ProposalStatus::Open, "Proposal must be in Open status for changing funds");
+        assert!(proposal.status == ProposalStatus::Open, "Proposal must be in Open status for changing funds");
 
         let owner = env::predecessor_account_id();
-		assert!(
+        assert!(
             proposal.owner == owner,
             "Only proposal creator can change funds"
-		);
+        );
         let old_funds = proposal.funds;
         proposal.funds = ntoy(new_funds as Balance);
+
         self.proposals.insert(&proposal_id,&proposal);
         env::log_str(&(format!("Change funds from {}Ⓝ into {}Ⓝ  for proposal: {} ", yton(old_funds), yton(proposal.funds), proposal.title)));
     }
