@@ -478,7 +478,7 @@ impl Contract {
             choicer.current_choices -= 1;
             choicer.total_spending += total_spending;
 
-            self.choicers.insert(&predecessor,&choicer);
+        self.choicers.insert(&predecessor,&choicer);
 
     } 
 }
