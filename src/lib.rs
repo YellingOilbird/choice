@@ -376,7 +376,7 @@ impl Contract {
         let p = proposal.vote_results.len();
         let funds = proposal.funds.clone();
         let converted_funds = yton(funds) as f64;
-		//set weights for calculate
+        //set weights for calculate
         self.vote_engine.weights = self.set_weights(p, converted_funds);
         
 		//Get vote results from contract
