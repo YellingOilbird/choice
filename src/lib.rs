@@ -454,7 +454,7 @@ impl Contract {
             let (account_id,amount) = vote;
             let amount_u128:Balance = (amount.round()) as Balance;
 
-			env::log_str(format!("Sending ~{}Ⓝ to account @{}", amount_u128, account_id).as_str());
+            env::log_str(format!("Sending ~{}Ⓝ to account @{}", amount_u128, account_id).as_str());
             
             let account_id:AccountId = account_id.parse().unwrap();
             let mut choicer = self.choicers
