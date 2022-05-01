@@ -568,82 +568,82 @@ mod tests {
             10_000_000_000_000_000_000_000_000, // 10Ⓝ
             10,
             "we need logo for us".to_string()
-		);
-		contract.change_funds("creator.near001".to_string(), 200.0); // 10Ⓝ -> 200Ⓝ
-		println!("{:?}", contract.view_active_proposals().to_vec());
-		//PARTICIPANT_1 CONTEXT. CREATE MEMBERSHIP AND SUBMIT DECISION
-		testing_env!(
-			get_context(participant_1())
-		);
+        );
+        contract.change_funds("creator.near001".to_string(), 200.0); // 10Ⓝ -> 200Ⓝ
+        println!("{:?}", contract.view_active_proposals().to_vec());
+        //PARTICIPANT_1 CONTEXT. CREATE MEMBERSHIP AND SUBMIT DECISION
+        testing_env!(
+            get_context(participant_1())
+        );
         contract.create_membership();
-		println!("{:?}", contract.is_active_proposal("creator.near001".to_string()));
-		println!("{:?}", contract.is_a_member("participant_1.near".parse().unwrap()));
-		contract.submit_decision("creator.near001".to_string(), "metadadalink1".to_string());
+        println!("{:?}", contract.is_active_proposal("creator.near001".to_string()));
+        println!("{:?}", contract.is_a_member("participant_1.near".parse().unwrap()));
+        contract.submit_decision("creator.near001".to_string(), "metadadalink1".to_string());
         //PARTICIPANT_2 CONTEXT. CREATE MEMBERSHIP AND SUBMIT DECISION
-		testing_env!(
-			get_context(participant_2())
-		);
+        testing_env!(
+            get_context(participant_2())
+        );
         contract.create_membership();
-		println!("{:?}", contract.is_a_member("participant_2.near".parse().unwrap()));
-		contract.submit_decision("creator.near001".to_string(), "metadadalink2".to_string());
-		//PARTICIPANT_3 CONTEXT. CREATE MEMBERSHIP & SUBMIT DECISION
-		testing_env!(
-			get_context(participant_3())
-		);
+        println!("{:?}", contract.is_a_member("participant_2.near".parse().unwrap()));
+        contract.submit_decision("creator.near001".to_string(), "metadadalink2".to_string());
+        //PARTICIPANT_3 CONTEXT. CREATE MEMBERSHIP & SUBMIT DECISION
+        testing_env!(
+            get_context(participant_3())
+        );
         contract.create_membership();
-		println!("{:?}", contract.is_a_member("participant_3.near".parse().unwrap()));
-		contract.submit_decision("creator.near001".to_string(), "metadadalink3".to_string());
+        println!("{:?}", contract.is_a_member("participant_3.near".parse().unwrap()));
+        contract.submit_decision("creator.near001".to_string(), "metadadalink3".to_string());
         //PARTICIPANT_4 CONTEXT. CREATE MEMBERSHIP & SUBMIT DECISION
-		testing_env!(
-			get_context(participant_4())
-		);
+        testing_env!(
+            get_context(participant_4())
+        );
         contract.create_membership();
-		println!("{:?}", contract.is_a_member("participant_4.near".parse().unwrap()));
-		contract.submit_decision("creator.near001".to_string(), "metadadalink4".to_string());
-         //PARTICIPANT_5 CONTEXT. CREATE MEMBERSHIP & SUBMIT DECISION
-		testing_env!(
-			get_context(participant_5())
-		);
+        println!("{:?}", contract.is_a_member("participant_4.near".parse().unwrap()));
+        contract.submit_decision("creator.near001".to_string(), "metadadalink4".to_string());
+        //PARTICIPANT_5 CONTEXT. CREATE MEMBERSHIP & SUBMIT DECISION
+        testing_env!(
+            get_context(participant_5())
+        );
         contract.create_membership();
-		println!("{:?}", contract.is_a_member("participant_5.near".parse().unwrap()));
-		contract.submit_decision("creator.near001".to_string(), "metadadalink5".to_string());
+        println!("{:?}", contract.is_a_member("participant_5.near".parse().unwrap()));
+        contract.submit_decision("creator.near001".to_string(), "metadadalink5".to_string());
         //PARTICIPANT_6 CONTEXT. CREATE MEMBERSHIP AND SUBMIT DECISION
-		testing_env!(
-			get_context(participant_6())
-		);
+        testing_env!(
+            get_context(participant_6())
+        );
         contract.create_membership();
-		println!("{:?}", contract.is_active_proposal("creator.near001".to_string()));
-		println!("{:?}", contract.is_a_member("participant_6.near".parse().unwrap()));
-		contract.submit_decision("creator.near001".to_string(), "metadadalink6".to_string());
+        println!("{:?}", contract.is_active_proposal("creator.near001".to_string()));
+        println!("{:?}", contract.is_a_member("participant_6.near".parse().unwrap()));
+        contract.submit_decision("creator.near001".to_string(), "metadadalink6".to_string());
         //PARTICIPANT_7 CONTEXT. CREATE MEMBERSHIP AND SUBMIT DECISION
-		testing_env!(
-			get_context(participant_7())
-		);
+        testing_env!(
+            get_context(participant_7())
+        );
         contract.create_membership();
-		println!("{:?}", contract.is_active_proposal("creator.near001".to_string()));
-		println!("{:?}", contract.is_a_member("participant_7.near".parse().unwrap()));
-		contract.submit_decision("creator.near001".to_string(), "metadadalink7".to_string());
+        println!("{:?}", contract.is_active_proposal("creator.near001".to_string()));
+        println!("{:?}", contract.is_a_member("participant_7.near".parse().unwrap()));
+        contract.submit_decision("creator.near001".to_string(), "metadadalink7".to_string());
 
-		//CREATOR CONTEXT. START ELECTION
-		testing_env!(
+        //CREATOR CONTEXT. START ELECTION
+        testing_env!(
 			get_context(creator())
-		);
+        );
         contract.start_election("creator.near001".to_string());
 
         //PARTICIPANT_1 CONTEXT. VOTE
-		testing_env!(
+        testing_env!(
 			get_context(participant_1())
-		);
-		contract.vote(
-			"creator.near001".to_string(),
-		    HashMap::from([
-				("participant_2.near".to_string(), 1.0),
-				("participant_3.near".to_string(), 2.0),
-				("participant_7.near".to_string(), 3.0),
-				("participant_4.near".to_string(), 4.0),
-				("participant_6.near".to_string(), 5.0),
-				("participant_5.near".to_string(), 6.0),
-				])
+        );
+        contract.vote(
+            "creator.near001".to_string(),
+            HashMap::from([
+                ("participant_2.near".to_string(), 1.0),
+                ("participant_3.near".to_string(), 2.0),
+                ("participant_7.near".to_string(), 3.0),
+                ("participant_4.near".to_string(), 4.0),
+                ("participant_6.near".to_string(), 5.0),
+                ("participant_5.near".to_string(), 6.0),
+                ])
 			);
 		//PARTICIPANT_2 CONTEXT. VOTE
 		testing_env!(
