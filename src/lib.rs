@@ -124,6 +124,7 @@ impl Contract {
         //vote_duration : Duration, 
         metadata : String,
 	) {
+		
         let predecessor = env::predecessor_account_id();
         assert!(
         	self.choicers.contains_key(&predecessor),
