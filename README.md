@@ -1,5 +1,5 @@
 # CHOICE 
-![choice](https://github.com/[username]/[reponame]/blob/[branch]/image.jpg?raw=true)] 
+![choice](https://github.com/YellingOilbird/choice/assets/logo2.svg?raw=true)] 
 ## Smart contract on NEAR blockchain
 
 It is a blockchain-based app which allows you to place a proposal and receive decisions from other registered users.
@@ -18,10 +18,11 @@ So here we have implemented a functionality that provides a closed non-binary vo
 		);
 ```
 ##### Choice members submit their decisions while proposal is open for it
-👨```participant_1.near``` =>  http://link_to_my_logo_for_you/from_participant_1.near 
-👨```participant_2.near``` =>  http://link_to_my_logo_for_you/from_participant_2.near
-👨```participant_3.near``` =>  http://link_to_my_logo_for_you/from_participant_3.near
-~~👤```participant_4.near``` =>  http://link_to_my_logo_for_you/from_participant_4.near~~
+
+👨```participant_1.near``` =>  http://link_to_my_logo_for_you/from_participant_1.near   
+👨```participant_2.near``` =>  http://link_to_my_logo_for_you/from_participant_2.near  
+👨```participant_3.near``` =>  http://link_to_my_logo_for_you/from_participant_3.near  
+~~👤```participant_4.near``` =>  http://link_to_my_logo_for_you/from_participant_4.near~~  
 *number of max_decisions = 3, sorry, ```participant_4.near```, you are late*
 ---
 ###### So, time is over. Now we don't take any decisions. Vote stage is starting here
