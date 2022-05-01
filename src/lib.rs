@@ -109,7 +109,7 @@ impl Contract {
             vote_engine : VoteEngine { 
                 weights: Vec::new(),
                 results: Vec::new()
-			}
+            }
         }
     }
     //CREATOR SIDE
