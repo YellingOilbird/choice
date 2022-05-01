@@ -224,7 +224,7 @@ impl Contract {
         self.proposals.insert(&proposal_id,&proposal);
     }
     fn finish_election(&mut self, proposal_id: String) {
-        let mut proposal = self.proposal
+        let mut proposal = self.proposals
             .get(&proposal_id)
             .expect(&(format!("No proposal with that id {}",&proposal_id)));
         proposal.status = ProposalStatus::Payout;
@@ -255,8 +255,8 @@ impl Contract {
 
         self.choicers.insert(&member_id, &member);
     }
-	//view all proposals with "Open" status
-	fn is_active_proposal(&self, proposal_id: String) -> bool {
+    //view all proposals with "Open" status
+    fn is_active_proposal(&self, proposal_id: String) -> bool {
         let status = self.proposals
             .get(&proposal_id)
             .expect(&(format!("No proposal with id {}",proposal_id)))
@@ -267,14 +267,14 @@ impl Contract {
         &self,
     ) -> UnorderedMap<ProposalId,Proposal> {
         let proposals = &self.proposals;
-		let mut active_proposals: UnorderedMap<String, Proposal> = UnorderedMap::new(b"active".to_vec());
-		for proposal in proposals.values() {
-			if self.is_active_proposal(proposal.id.clone()) == true {
-                active_proposals.insert(&proposal.id, &proposal);
+        let mut active_proposals: UnorderedMap<String, Proposal> = UnorderedMap::new(b"active".to_vec());
+        for proposal in proposals.values() {
+            if self.is_active_proposal(proposal.id.clone()) == true {
+				active_proposals.insert(&proposal.id, &proposal);
 			}
-		}
-		active_proposals
-    } 
+        }
+        active_proposals
+	} 
     pub fn is_a_member(&self, id: AccountId) -> bool {
 		match self.choicers.get(&id) {
 			Some(_v) => true,
