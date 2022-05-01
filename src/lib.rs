@@ -114,7 +114,7 @@ impl Contract {
     }
     //CREATOR SIDE
 	#[payable]
-	pub fn create_proposal(
+pub fn create_proposal(
         &mut self,
 		vote_type : VoteType,
         title : String,
