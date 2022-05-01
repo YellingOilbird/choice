@@ -282,38 +282,39 @@ impl Contract {
         }
     }
 	//TODO: Add checking "is_proposal_owner?". Cause creator cannot vote/submit for their proposals
-	pub fn submit_decision(&mut self, proposal_id: String, metadata: String) {
+    pub fn submit_decision(&mut self, proposal_id: String, metadata: String) {
         let predecessor = env::predecessor_account_id();
         assert!(self.is_a_member(predecessor.clone()),"You are not member. Create membership first for submit decisions");
         
-		let mut proposal = self.proposals
+        let mut proposal = self.proposals
             .get(&proposal_id)
             .expect(&(format!("No proposal with id {}",&proposal_id)));
-        assert!(proposal.status == ProposalStatus::Open, "Proposal status is {:?} ", proposal.status);
+	    assert!(proposal.status == ProposalStatus::Open, "Proposal status is {:?} ", proposal.status);
 
         let decision = Decision {
             performer : predecessor,
             metadata
         };
 
-		let member_id = env::predecessor_account_id();
-		let mut choicer = self.choicers
-			    .get(&member_id)
-				.expect(&(format!("No choicer with id @{}",member_id)));
+        let member_id = env::predecessor_account_id();
+        let mut choicer = self.choicers
+		    .get(&member_id)
+            .expect(&(format!("No choicer with id @{}",member_id)));
 
-		choicer.current_choices += 1;
+        choicer.current_choices += 1;
 
-		self.choicers.insert(&member_id,&choicer);
-		env::log_str(&(format!(
-			"Choicer @{} info: {:#?} 
-			submitted decision {:?} for proposal {} ",
-			member_id, choicer, decision, proposal.title)));
+        self.choicers.insert(&member_id,&choicer);
+        env::log_str(&(format!(
+           "Choicer @{} info: {:#?} 
+            submitted decision {:?} for proposal {} ",
+            member_id, choicer, decision, proposal.title)));
 
         proposal.decisions.push(decision);
-		self.proposals.insert(&proposal_id, &proposal);
-   }
+		
+        self.proposals.insert(&proposal_id, &proposal);
+    }
 
-	#[payable]
+    #[payable]
 	//send your ranged and ordering votes for decisions. TODO: checking for predecessor submitted decision in proposal
 	pub fn vote(&mut self, proposal_id: String, vote: HashMap<String, f64>) { 
         let member_id = env::predecessor_account_id();
