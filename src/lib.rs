@@ -347,24 +347,24 @@ impl Contract {
     // Calculate weights for vote table places. 
     //  Depends on number of participants (p) and proposal funds for disperse
     fn set_weights(&self, p: usize, funds: f64) -> Vec<f64> {
-		let p:i32 = p as i32;
-		let f:f64 = funds;
+	    let p:i32 = p as i32;
+	    let f:f64 = funds;
+	    
+	    let aw:usize = (p-1) as usize;
+	    let w_last = f/(p*(pow(2, aw) - 1)) as f64;
 		
-		let aw:usize = (p-1) as usize;
-		let w_last = f/(p*(pow(2, aw) - 1)) as f64;
+	    let mut vec: Vec<f64> = Vec::with_capacity(aw);
+	    let mut rev_vec: Vec<f64> = Vec::with_capacity(aw);
 		
-		let mut vec: Vec<f64> = Vec::with_capacity(aw);
-		let mut rev_vec: Vec<f64> = Vec::with_capacity(aw);
-		
-		// These are all done without reallocating...
-		for i in 0..aw {
+	    // These are all done without reallocating...
+	    for i in 0..aw {
 			vec.push(pow(2, i) as f64 * w_last.clone())
-		}
-		for i in vec.iter().rev() {
-			rev_vec.push(*i)
-		}
-		rev_vec
-	}
+	    }
+	    for i in vec.iter().rev() {
+	    	rev_vec.push(*i)
+	    }
+	    rev_vec
+    }
 	//Accumulate all votes and calculate values for multisend proposal funds
 	fn calculate_vote_results(&mut self, proposal_id: String) -> HashMap<String, f64> {
 
