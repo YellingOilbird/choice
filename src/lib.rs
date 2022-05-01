@@ -510,19 +510,19 @@ mod tests {
     }
     fn participant_3() -> String {
 		"participant_3.near".to_string()
-	}
+    }
     fn participant_4() -> String {
-		"participant_4.near".to_string()
-	}
+        "participant_4.near".to_string()
+    }
     fn participant_5() -> String {
-		"participant_5.near".to_string()
-	}
+        "participant_5.near".to_string()
+    }
     fn participant_6() -> String {
-		"participant_6.near".to_string()
-	}
+        "participant_6.near".to_string()
+    }
     fn participant_7() -> String {
-		"participant_7.near".to_string()
-	}
+        "participant_7.near".to_string()
+    }
 
 
     fn bob() -> String {
