@@ -1,5 +1,5 @@
 # CHOICE 
-![choice](https://github.com/YellingOilbird/choice/assets/logo2.svg)] 
+![img](https://github.com/YellingOilbird/choice/assets/logo2.svg)] 
 ## Smart contract on NEAR blockchain
 
 It is a blockchain-based app which allows you to place a proposal and receive decisions from other registered users.
@@ -77,23 +77,23 @@ $near deploy <ACCOUNT.MASTERACCOUNT> --wasmFile res/choice.wasm'
 ---
 
 #### Methods:
-*```near```commands wiil be right here little bit later*
+*```near```commands wiil be right here little bit later*  
 *⚰️ methods wiil deprecated and changed to automatic based on Duration functions*
 
-```create_membership()```                    - create new membership in app
+```create_membership()```                    - create new membership in app  
 ##### CREATOR SIDE
-```create_proposal(...)```                   - create new proposal 
-```change_funds(proposal_id, new funds)```   - change proposal attached funds (only before voting starts!) 
-```view_decisions(proposal_id)```            - returns all submitted decisions for proposal  
-*⚰️* ```start_election(proposal_id)```       - starts Vote phase
-*⚰️* ```finish_election(proposal_id)```      - finish Vote phase 
+```create_proposal(...)```                   - create new proposal   
+```change_funds(proposal_id, new funds)```   - change proposal attached funds (only before voting starts!)   
+```view_decisions(proposal_id)```            - returns all submitted decisions for proposal    
+*⚰️* ```start_election(proposal_id)```       - starts Vote phase  
+*⚰️* ```finish_election(proposal_id)```      - finish Vote phase   
 ##### CHOICER SIDE 
-```view_active_proposals()```                 - returns all open proposals  
-```submit_decision(proposal_id, metadata)```  - submit your decision in proposal (it can be link on github)   
-```vote(proposal_id, vote)```                 - vote in format ```{"account_1.near": 1.0,..."account_n.near": n.0
-```view_vote_board(proposal_id)```            - returns all votes for proposal
+```view_active_proposals()```                 - returns all open proposals    
+```submit_decision(proposal_id, metadata)```  - submit your decision in proposal (it can be link on github)     
+```vote(proposal_id, vote)```                 - vote in format ```{"account_1.near": 1.0,..."account_n.near": n.0  
+```view_vote_board(proposal_id)```            - returns all votes for proposal  
 ##### VOTE ENGINE       
-*⚰️*```payout(proposal_id)```                 - disperse funds according to the vote results
+*⚰️*```payout(proposal_id)```                 - disperse funds according to the vote results  
 
 Enjoy!  
 
