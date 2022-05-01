@@ -1,4 +1,4 @@
- ![choice](./assets/logo5.png)] 
+ ![choice](./assets/logo5.png?raw=true)] 
 # CHOICE
 ## Smart contract on NEAR blockchain
 
