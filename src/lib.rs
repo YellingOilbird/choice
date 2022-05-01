@@ -403,13 +403,13 @@ impl Contract {
                 a
             }).reduce(||HashMap::new(),|mut a, b| {
             for (k, v) in b {
-				if a.contains_key(&k) {
+                if a.contains_key(&k) {
                     let x = a.get(&k).unwrap();
-					a.insert(k, v + x);
-            } else {
+                    a.insert(k, v + x);
+                } else {
                     a.insert(k, v);
+                }
             }
-        }
 		    a
         });
         bomb
