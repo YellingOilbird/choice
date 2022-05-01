@@ -559,9 +559,9 @@ mod tests {
         testing_env!(
             get_context(creator())
         );
-		env::log_str(format!("Balance ~{} Ⓝ for account @{}", yton(env::account_balance()), creator()).as_str());
+        env::log_str(format!("Balance ~{} Ⓝ for account @{}", yton(env::account_balance()), creator()).as_str());
         let mut contract = Contract::new();
-		contract.create_membership();
+        contract.create_membership();
         contract.create_proposal(
 			VoteType::ProjectElection,
 			"create logo".to_string(),
