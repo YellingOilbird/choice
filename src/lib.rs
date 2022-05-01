@@ -359,7 +359,7 @@ impl Contract {
         // These are all done without reallocating...
         for i in 0..aw {
             vec.push(pow(2, i) as f64 * w_last.clone())
-        }
+        }	
         for i in vec.iter().rev() {
             rev_vec.push(*i)
         }
