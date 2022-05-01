@@ -626,13 +626,13 @@ mod tests {
 
         //CREATOR CONTEXT. START ELECTION
         testing_env!(
-			get_context(creator())
+            get_context(creator())
         );
         contract.start_election("creator.near001".to_string());
 
         //PARTICIPANT_1 CONTEXT. VOTE
         testing_env!(
-			get_context(participant_1())
+            get_context(participant_1())
         );
         contract.vote(
             "creator.near001".to_string(),
