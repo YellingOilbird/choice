@@ -1,5 +1,4 @@
-
-<div style="background-color: rgb(50, 50, 50);">
+<div style="color:black">.
 <h1>
     <img src="./assets/logo5.png"/>
     CHOICE
