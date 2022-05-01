@@ -1,8 +1,8 @@
-
+<span style="background-color:black">.
 <h1>
     <img src="./assets/logo5.png"/>
     CHOICE
-</h1>
+</h1></span>
 
 ## Smart contract on NEAR blockchain
 
